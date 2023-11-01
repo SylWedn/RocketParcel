@@ -7,3 +7,4 @@ urlpatterns = [
 
 # TODO: dev_in_code treatment for DB, and logic
 # TODO: Adapt to temp sensor when installed {8} to {10}
+# TODO: check if input is INT, or make converter
