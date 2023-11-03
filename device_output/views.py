@@ -6,7 +6,7 @@ def dev_output(request):
     return HttpResponse('Device output')
 
 def send_command_to_pico(request):
-    pico_url = 'http://192.168.31.40:82/?relay1=on'
+    pico_url = 'http://192.168.31.40:81/?relay1=on'
 
     try:
         response = requests.get(pico_url)
