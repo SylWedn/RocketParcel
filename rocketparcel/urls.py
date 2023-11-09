@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('device_input.urls')),  # http://127.0.0.1:8000/dev_input/
-    path('', include('device_output.urls'))  # http://127.0.0.1:8000/dev_input/
+    path('', include('device_output.urls')),  # http://127.0.0.1:8000/dev_input/
+    path('', include('project_management.urls'))  # http://127.0.0.1:8000
 ]

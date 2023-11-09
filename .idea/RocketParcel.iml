@@ -8,4 +8,11 @@
     <orderEntry type="jdk" jdkName="RocketParcel Venv Python 3.11" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/project_management/templates" />
+      </list>
+    </option>
+  </component>
 </module>
