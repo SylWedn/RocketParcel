@@ -12,6 +12,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/project_management/templates" />
+        <option value="$MODULE_DIR$/rocketparcel/templates" />
       </list>
     </option>
   </component>

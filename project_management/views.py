@@ -30,7 +30,7 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'about.html', {'title': 'about web'})
+    return render(request, 'about.html', {'title': 'about web', 'menu': menu})
 
 
 def show_post(request, id):
