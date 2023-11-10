@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+    {% for m in menu %}
+    {% if not forloop.last %}<li>{% else %}<li class="last">{% endif %}
+    <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+    {% endfor %}
+</ul>
+<p >{{ menu|join:" | " }}</p>
+<h1>{{ tittle }}</h1>
+
+<ul>
+    {% for p in posts %}
+    <li>
+        <h2>{{ p.title }}</h2>
+        <p>{{ p.content }}</p>
+        <p ><a href="post/{{p.id}}/">Read post</a></p>
+        {%if not forloop.last%}
+        <hr>
+        {%endif%}
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
