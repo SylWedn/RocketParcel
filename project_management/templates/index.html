@@ -1,24 +1,21 @@
 {%extends 'base.html'%}
 
 {%block content%}
-{% include 'includes/nav.html' %}
 
-
-    <title>{{title}}</title>
-
-<ul>
+<ul class="list-articles">
     {% for p in posts %}
-    <li>
-        <h2>{{ p.title }}</h2>
-        <p>{{ p.content }}</p>
-        <p ><a href="post/{{p.id}}/">Read post</a></p>
-        {%if not forloop.last%}
-        <hr>
-        {%endif%}
-    </li>
+    {% if p.is_published %}
+    <li><h2>{{ p.title }}</h2>
+    {% autoescape off %}
+    {{ p.content|linebreaks|truncatewords:40 }}
+    {% endautoescape %}
+
+        <div class="clear"></div>
+        <p class="link-read-post"><a href="{% url 'post' p.id %}">Read post</a></p>
+        </li>
+    {%endif%}
     {% endfor %}
 </ul>
-{% include 'includes/nav.html' %}
 
 {%endblock%}
 
