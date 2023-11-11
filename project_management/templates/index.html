@@ -11,7 +11,7 @@
     {% endautoescape %}
 
         <div class="clear"></div>
-        <p class="link-read-post"><a href="{% url 'post' p.id %}">Read post</a></p>
+        <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Read post</a></p>
         </li>
     {%endif%}
     {% endfor %}

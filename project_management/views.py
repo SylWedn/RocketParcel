@@ -1,6 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
+
+from .models import Packagedb
 
 # Create your views here.
 
@@ -26,10 +28,11 @@ cats_db = [
 
 
 def index(request):
+    posts = Packagedb.objects.filter(is_published=1)
     data = {
         'title': 'index page',
         'menu': menu,
-        'posts': data_db,
+        'posts': posts,
         'cat_selected': 0,
     }
 
@@ -40,8 +43,16 @@ def about(request):
     return render(request, 'about.html', {'title': 'about web', 'menu': menu})
 
 
-def show_post(request, id):
-    return HttpResponse(f"Post #{id}")
+def show_post(request, post_slug):
+    post = get_object_or_404(Packagedb, slug=post_slug)
+    data = {
+        'title': post.title,
+        'menu': menu,
+        'post': post,
+        'cat_selected': 1,
+    }
+    return render(request, 'post.html', context=data)
+
 
 
 def add_page(request):
