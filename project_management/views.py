@@ -18,12 +18,19 @@ data_db = [
     {'id': 3, 'title': 'third article', 'content': 'text of third article', 'is_published': True}
 ]
 
+cats_db = [
+    {'id': 1, 'name': 'Category nr 1'},
+    {'id': 2, 'name': 'Category nr 2'},
+    {'id': 3, 'name': 'Category nr 3'},
+]
+
 
 def index(request):
     data = {
         'title': 'index page',
         'menu': menu,
-        'posts': data_db
+        'posts': data_db,
+        'cat_selected': 0,
     }
 
     return render(request, 'index.html', context=data)
@@ -47,3 +54,12 @@ def contact(request):
 
 def login(request):
     return HttpResponse("Login page")
+
+def show_category (request, cat_id):
+    data = {
+        'title': 'category title',
+        'menu': menu,
+        'posts': data_db,
+        'cat_selected': cat_id,
+    }
+    return render(request, 'index.html', context=data)
