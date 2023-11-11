@@ -28,7 +28,7 @@ cats_db = [
 
 
 def index(request):
-    posts = Packagedb.objects.filter(is_published=1)
+    posts = Packagedb.published.all()
     data = {
         'title': 'index page',
         'menu': menu,
