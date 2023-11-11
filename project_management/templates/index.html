@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
+{%extends 'base.html'%}
+
+{%block content%}
+{% include 'includes/nav.html' %}
+
+
     <title>{{title}}</title>
-</head>
-<body>
-<ul>
-    <li><a href="{% url 'home' %}">Home</a></li>
-    {% for m in menu %}
-    {% if not forloop.last %}<li>{% else %}<li class="last">{% endif %}
-    <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
-    {% endfor %}
-</ul>
-<p >{{ menu|join:" | " }}</p>
-<h1>{{ tittle }}</h1>
 
 <ul>
     {% for p in posts %}
@@ -26,5 +18,7 @@
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% include 'includes/nav.html' %}
+
+{%endblock%}
+
