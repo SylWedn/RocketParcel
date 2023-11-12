@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
@@ -12,12 +13,14 @@ class Packagedb(models.Model):
         DRAFT = 0, 'Draft'
         PUBLISHED = 1, 'Published'
 
+
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, )
     content = models.TextField(blank=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(choices=Status.choices, default=Status.DRAFT)
+    is_published = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
+                                       default=Status.DRAFT, verbose_name="Status")
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='posts')  # null=True)
 
     objects = models.Manager()
@@ -35,6 +38,11 @@ class Packagedb(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+
+        super().save(*args, **kwargs)
 
 
 class Category(models.Model):
