@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from project_management.models import Packagedb
+
+admin.site.register(Packagedb)
