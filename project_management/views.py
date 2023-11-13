@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 
 from .forms import AddPostForm
@@ -53,7 +53,14 @@ def add_page(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
+            # #print(form.cleaned_data)
+            # try:
+            #     Packagedb.objects.create(**form.cleaned_data)
+            #     return redirect('home')
+            # except:
+            #     form.add_error(None, 'Error adding post')
+            form.save()
+            return redirect('home')
     else:
         form = AddPostForm()
 
