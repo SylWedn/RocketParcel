@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 
+from .forms import AddPostForm
 from .models import Packagedb, Category
 
 # Create your views here.
@@ -49,8 +50,19 @@ def show_post(request, post_slug):
 
 
 def add_page(request):
-    return render(request, 'add_page.html', {'menu': menu, 'title': 'add page'})
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+    else:
+        form = AddPostForm()
 
+    data = {
+        'title': 'add page',
+        'menu': menu,
+        'form': form
+    }
+    return render(request, 'add_page.html', data)
 
 
 def contact(request):
