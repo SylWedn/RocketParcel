@@ -49,7 +49,8 @@ def show_post(request, post_slug):
 
 
 def add_page(request):
-    return HttpResponse("Add page")
+    return render(request, 'add_page.html', {'menu': menu, 'title': 'add page'})
+
 
 
 def contact(request):
