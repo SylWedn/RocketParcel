@@ -5,6 +5,9 @@ from project_management.models import Category
 register = template.Library()
 
 
+@register.simple_tag
+def get_menu():
+    return views.menu
 
 @register.inclusion_tag('list_categories.html')
 def show_categories(cat_selected_id=0):
