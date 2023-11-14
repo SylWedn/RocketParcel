@@ -7,7 +7,7 @@ from project_management.models import Packagedb, Category
 class PackagedbAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ('id', 'title', 'time_create', 'is_published', 'cat', 'brief_info')
+    list_display = ('id', 'title', 'photo', 'time_create', 'is_published', 'cat', 'brief_info')
     list_display_links = ('id', 'title')
     list_editable = ('is_published', 'cat')
     list_per_page = 3

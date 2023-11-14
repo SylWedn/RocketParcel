@@ -11,6 +11,10 @@
     {{ p.content|linebreaks|truncatewords:40 }}
     {% endautoescape %}
 
+{% if p.photo %}
+               <p ><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
+{% endif %}
+
         <div class="clear"></div>
         <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Read post</a></p>
         </li>
