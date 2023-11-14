@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 
-from .forms import AddPostForm
-from .models import Packagedb, Category
+from .forms import AddPostForm, UploadFileForm
+from .models import Packagedb, Category, UploadFiles
 
 # Create your views here.
 
@@ -34,8 +34,23 @@ def index(request):
     return render(request, 'index.html', context=data)
 
 
+def handle_uploaded_file(f):
+    with open(f"uploads/{f.name}", "wb+") as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
 def about(request):
-    return render(request, 'about.html', {'title': 'about web', 'menu': menu})
+    if request.method == "POST":
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            fp = UploadFiles(file=form.cleaned_data['file'])
+            fp.save()
+
+    else:
+        form = UploadFileForm()
+
+    return render(request, 'about.html', {'title': 'about', 'form': form})
 
 
 def show_post(request, post_slug):
@@ -51,7 +66,7 @@ def show_post(request, post_slug):
 
 def add_page(request):
     if request.method == 'POST':
-        form = AddPostForm(request.POST)
+        form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
             # #print(form.cleaned_data)
             # try:
