@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 
 from .forms import AddPostForm, UploadFileForm
@@ -68,14 +68,7 @@ def add_page(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
-            # #print(form.cleaned_data)
-            # try:
-            #     Packagedb.objects.create(**form.cleaned_data)
-            #     return redirect('home')
-            # except:
-            #     form.add_error(None, 'Error adding post')
-            form.save()
-            return redirect('home')
+            print(form.cleaned_data)
     else:
         form = AddPostForm()
 
