@@ -12,7 +12,6 @@ menu = [
     {'title': 'About', 'url_name': 'about'},
     {'title': 'Add page', 'url_name': 'addpage'},
     {'title': 'Contact', 'url_name': 'contact'},
-    {'title': 'Sign in', 'url_name': 'login'},
 ]
 
 data_db = [
