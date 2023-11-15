@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
@@ -9,7 +10,7 @@ from .models import Packagedb, Category, UploadFiles
 
 
 menu = [
-    {'title': 'About', 'url_name': 'about'},
+    {'title': 'Device IN/OUT', 'url_name': 'about'},
     {'title': 'Add page', 'url_name': 'addpage'},
     {'title': 'Contact', 'url_name': 'contact'},
 ]
@@ -39,6 +40,7 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
+@login_required
 def about(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -62,7 +64,7 @@ def show_post(request, post_slug):
     }
     return render(request, 'post.html', context=data)
 
-
+@login_required
 def add_page(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST, request.FILES)
@@ -87,7 +89,7 @@ def add_page(request):
 
 
 def contact(request):
-    return HttpResponse("Contact page")
+    return HttpResponse("Contact <br> page ")
 
 
 def login(request):
