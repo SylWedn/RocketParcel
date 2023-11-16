@@ -1,9 +1,19 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Command to Pico</title>
+</head>
+<body>
 
-{% block content %}
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p ><input type="file" name="file_upload"></p>
-    <p ><button type="submit">send</button></p>
-</form>
-{% endblock %}
+    <h1>Send Command to Pico</h1>
+
+    <form method="post" action="{% url 'send_command_to_pico' %}">
+        {% csrf_token %}
+        <button type="submit">Send Command</button>
+    </form>
+
+</body>
+</html>

@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites import requests
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
+import requests
 
 from .forms import AddPostForm, UploadFileForm
 from .models import Packagedb, Category, UploadFiles
@@ -64,6 +66,7 @@ def show_post(request, post_slug):
     }
     return render(request, 'post.html', context=data)
 
+
 @login_required
 def add_page(request):
     if request.method == 'POST':
@@ -107,3 +110,13 @@ def show_category(request, cat_slug):
     }
 
     return render(request, 'index.html', context=data)
+
+
+def send_command_to_pico(request):
+    pico_url = 'http://192.168.31.40:82/?relay1=on'
+
+    response = requests.get(pico_url)
+    if response.status_code == 200:
+        return HttpResponse('Command successfully sent to Raspberry Pi Pico')
+    else:
+        return HttpResponse('Error sending the command to Raspberry Pi Pico', status=500)
