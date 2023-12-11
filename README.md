@@ -1,4 +1,7 @@
 # RocketParcel
+ 
+❗❗❗  In this project, I honed my skills by practicing with the Django framework and experimented with controlling a Raspberry Pico microcontroller through Django 😉.
+
 🚚 Welcome to RockerParcel - Your Soft For Ultimate Delivery Solution! 📦
 
 [![RocketParcel logo](https://i.imgur.com/LagmdQD.png)](https://rocketparcel.lt)
